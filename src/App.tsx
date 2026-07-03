@@ -7,31 +7,49 @@ import ServicesSection from './components/ServicesSection';
 import ProjectsSection from './components/ProjectsSection';
 import PartnersSection from './components/PartnersSection';
 import ContactSection from './components/ContactSection';
+import SiteFooter from './components/SiteFooter';
+import ServiceDetailPage from './components/ServiceDetailPage';
+import { getServicePageBySlug, type ServicePage } from './data/services';
 
-type AppRoute = 'home' | 'about' | 'services' | 'projects' | 'clients' | 'contact';
+type AppRoute =
+  | { page: 'home' | 'about' | 'services' | 'projects' | 'clients' | 'contact' }
+  | { page: 'service-detail'; service: ServicePage };
 
 function getRouteFromHash(hash: string): AppRoute {
   const path = hash.replace(/^#/, '') || '/';
 
+  if (path.startsWith('/services/')) {
+    const slug = path.replace('/services/', '');
+    const service = getServicePageBySlug(slug);
+
+    if (service) {
+      return { page: 'service-detail', service };
+    }
+  }
+
   switch (path) {
     case '/about':
-      return 'about';
+      return { page: 'about' };
     case '/services':
-      return 'services';
+      return { page: 'services' };
     case '/projects':
-      return 'projects';
+      return { page: 'projects' };
     case '/clients':
-      return 'clients';
+      return { page: 'clients' };
     case '/contact':
-      return 'contact';
+      return { page: 'contact' };
     default:
-      return 'home';
+      return { page: 'home' };
   }
 }
 
 export default function App() {
   const [ready, setReady] = useState(false);
   const [route, setRoute] = useState<AppRoute>(() => getRouteFromHash(window.location.hash));
+
+  useEffect(() => {
+    setRoute(getRouteFromHash(window.location.hash));
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -47,7 +65,7 @@ export default function App() {
   }, []);
 
   const renderPage = () => {
-    switch (route) {
+    switch (route.page) {
       case 'about':
         return <AboutSection />;
       case 'services':
@@ -58,6 +76,8 @@ export default function App() {
         return <PartnersSection />;
       case 'contact':
         return <ContactSection />;
+      case 'service-detail':
+        return <ServiceDetailPage service={route.service} />;
       default:
         return <HeroSlider />;
     }
@@ -67,9 +87,10 @@ export default function App() {
     <div className={`app ${ready ? 'app--ready' : ''}`}>
       <Preloader onComplete={() => setReady(true)} />
       <Header />
-      <main className={route === 'home' ? 'page-main page-main--home' : 'page-main'}>
+      <main className={route.page === 'home' ? 'page-main page-main--home' : 'page-main'}>
         {renderPage()}
       </main>
+      {route.page !== 'home' && <SiteFooter />}
     </div>
   );
 }

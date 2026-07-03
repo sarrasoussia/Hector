@@ -1,30 +1,46 @@
-import { partners } from '../data/partners';
+const clients = [
+  'WK Mens Salon',
+  '100 Cafe',
+  'GULF Exchange',
+  'Retro Bites',
+  'Pink Blossom chocolate',
+  'Joe General',
+  'La table',
+  'AL Hajji Legal Consultant and Attorneys',
+  'Hamda beauty Salon',
+  'Brudore.qa',
+  'Bonds',
+  'Cotto by Bonds',
+  'Shrimpy.qa',
+  'Top Car Showroom',
+  "Mort's",
+];
 
 export default function PartnersSection() {
   return (
-    <section className="section section--partners" id="partners">
-      <div className="section__container">
+    <section className="page-section" id="partners">
+      <div className="page-hero">
+        <div className="section__container">
+          <span className="section__label">Clients</span>
+          <h1 className="page-hero__title">Our Clients</h1>
+        </div>
+      </div>
+
+      <div className="section section--partners">
+        <div className="section__container">
         <div className="section__header">
-          <span className="section__label">Trusted By</span>
-          <h2 className="section__title">Our Partners & Clients</h2>
-          <p className="section__subtitle">
-            Brands we have proudly delivered fit-out, construction, and furniture solutions for across Qatar.
-          </p>
+          <span className="section__label">Clients</span>
+          <h2 className="section__title">Our Clients</h2>
         </div>
 
-        <div className="partners-grid">
-          {partners.map((partner) => (
-            <article key={partner.id} className="partner-card">
-              <div className="partner-card__image-wrap">
-                <img src={partner.image} alt={partner.name} loading="lazy" />
-              </div>
-              <div className="partner-card__info">
-                <h3>{partner.name}</h3>
-                <span>{partner.category}</span>
-              </div>
+        <div className="clients-grid">
+          {clients.map((client) => (
+            <article key={client} className="client-card">
+              <h3>{client}</h3>
             </article>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

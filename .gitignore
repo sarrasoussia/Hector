@@ -3,3 +3,7 @@ pdf
 node_modules
 .env
 public
+.vercel
+video
+.DS_Store
+tsconfig.tsbuildinfo

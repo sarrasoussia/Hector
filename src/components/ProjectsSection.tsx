@@ -15,13 +15,19 @@ export default function ProjectsSection() {
         <div className="projects-grid">
           {projectWorks.map((project) => (
             <article key={project.id} className="project-card">
-              <div className="project-card__image-wrap">
-                <img src={project.image} alt={project.name} loading="lazy" />
-              </div>
+              {project.image ? (
+                <div className="project-card__image-wrap">
+                  <img src={project.image} alt={project.name} loading="lazy" />
+                </div>
+              ) : (
+                <div className="project-card__image-wrap project-card__image-wrap--placeholder" aria-hidden="true">
+                  <span className="project-card__placeholder-text">HECTOR QATAR PROJECT</span>
+                </div>
+              )}
               <div className="project-card__content">
                 <h3>{project.name}</h3>
-                <p className="project-card__location">{project.location}</p>
-                <p className="project-card__scope">{project.scope}</p>
+                {project.location && <p className="project-card__location">{project.location}</p>}
+                {project.scope && <p className="project-card__scope">{project.scope}</p>}
               </div>
             </article>
           ))}

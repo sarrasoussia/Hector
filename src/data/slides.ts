@@ -15,11 +15,12 @@ export const company = {
   about:
     'A Qatar-based company offering turnkey fit-out projects, furniture supply, and civil construction. We transform spaces into inspiring environments with quality craftsmanship and attention to detail.',
   contact: {
-    address: 'Office No. 3 – Al Naser Tower A, Corniche Road, Doha, Qatar',
+    address: 'Al naser tower A west bay floor number: 17, Room No: 3, Doha, Qatar',
     phone: '(+974) 70747672',
     fax: '(+974) 4451 2254',
-    mobile: '(+974) 71172039',
+    mobile: '7117 2039',
     email: 'info@hectorqatar.com',
+    marketingEmail: 'marketing@hectorqatar.com',
   },
 };
 

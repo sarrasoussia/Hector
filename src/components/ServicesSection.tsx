@@ -1,36 +1,40 @@
-import { slides } from '../data/slides';
+import { servicePages } from '../data/services';
 
 export default function ServicesSection() {
   return (
-    <section className="section section--services" id="services">
-      <div className="section__container">
+    <section className="page-section" id="services">
+      <div className="page-hero">
+        <div className="section__container">
+          <span className="section__label">Services</span>
+          <h1 className="page-hero__title">Our Services</h1>
+        </div>
+      </div>
+
+      <div className="section section--services">
+        <div className="section__container">
         <div className="section__header">
-          <span className="section__label">What We Do</span>
-          <h2 className="section__title">Services</h2>
+          <span className="section__label">Services</span>
+          <h2 className="section__title">Our Services</h2>
           <p className="section__subtitle">
-            End-to-end contracting, fit-out, and delivery services tailored for commercial,
-            retail, hospitality, and residential spaces across Qatar.
+            Specialized maintenance services designed to keep cooling and ventilation systems
+            operating efficiently, safely, and reliably.
           </p>
         </div>
 
         <div className="services-grid">
-          {slides.map((service) => (
-            <article key={service.id} className="service-card">
-              <div
-                className="service-card__image"
-                style={{ backgroundImage: `url(${service.image})` }}
-                aria-hidden="true"
-              />
+          {servicePages.map((service) => (
+            <article key={service.title} className="service-card">
               <div className="service-card__content">
-                <h3>
-                  {service.title}
-                  {service.titleLine2 ? ` ${service.titleLine2}` : ''}
-                </h3>
-                <p>{service.description}</p>
+                <h3>{service.title}</h3>
+                <p>{service.shortDescription}</p>
+                <a href={`#/services/${service.slug}`} className="service-card__link">
+                  View Service
+                </a>
               </div>
             </article>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
