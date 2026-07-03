@@ -34,3 +34,4 @@ npm run preview
 - Vite 6
 - Swiper 11 (fade effect, autoplay, loop)
 # Hector
+# Hector
